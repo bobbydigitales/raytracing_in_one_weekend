@@ -1,10 +1,10 @@
 
 function* render(image, context) {
 
-    for (let j = image.height - 1; j >= 0; --j) {
-        for (let i = 0; i < image.width; ++i) {
+    for (let j = 0; j< image.height; j++) {
+        for (let i = 0; i < image.width; i++) {
             let r = i / (image.width - 1);
-            let g = j / (image.width - 1);
+            let g = j / (image.height - 1);
             let b = 0.25;
 
             let ir = 255.999 * r;
@@ -28,7 +28,7 @@ function update(image, context) {
 const BYTES_PER_PIXEL = 4;
 
 function putPixel(image, x, y, r, g, b) {
-    let pixelIndex = ((((image.height - 1) - y) * image.width) + x) * BYTES_PER_PIXEL;
+    let pixelIndex = ((y * image.width) + x) * BYTES_PER_PIXEL;
 
     image.data[pixelIndex + 0] = r; // R value
     image.data[pixelIndex + 1] = g; // G value
